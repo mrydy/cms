@@ -1,5 +1,8 @@
 *.classs
+*.jar
 .metadata
 RemoteSystemsTempFiles
 Servers
 .settings
+.classpath
+.project
