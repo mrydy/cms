@@ -1,3 +1,5 @@
+*.classs
 .metadata
 RemoteSystemsTempFiles
 Servers
+.settings
