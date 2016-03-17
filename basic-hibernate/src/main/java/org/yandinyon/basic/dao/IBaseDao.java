@@ -105,11 +105,11 @@ public interface IBaseDao<T> {
 	 * @param isEntity  该对象是否是Hibernate所管理的实体，如果不是需要使用setResultTransform查询
 	 * @return 一组对象
 	 */
-	public List<Object> listBySQL(String sql,Object[] args,Class<Object> clz,boolean isEntity);
-	public List<Object> listBySQL(String sql,Object arg,Class<Object> clz,boolean isEntity);
-	public List<Object> listBySQL(String sql,Class<Object> clz,boolean isEntity);
-	public List<Object> listBySQL(String sql,Object[] args,Map<String, Object> alias,Class<Object> clz,boolean isEntity);
-	public List<Object> listByAliasSQL(String sql,Map<String, Object> alias,Class<Object> clz,boolean isEntity);
+	public <N extends Object>List<N> listBySQL(String sql,Object[] args,Class<?> clz,boolean isEntity);
+	public <N extends Object>List<N> listBySQL(String sql,Object arg,Class<?> clz,boolean isEntity);
+	public <N extends Object>List<N> listBySQL(String sql,Class<?> clz,boolean isEntity);
+	public <N extends Object>List<N> listBySQL(String sql,Object[] args,Map<String, Object> alias,Class<?> clz,boolean isEntity);
+	public <N extends Object>List<N> listByAliasSQL(String sql,Map<String, Object> alias,Class<?> clz,boolean isEntity);
 	
 	/**
 	 * 根据SQL查询对象，不包含关联对象
@@ -119,11 +119,11 @@ public interface IBaseDao<T> {
 	 * @param isEntity  该对象是否是Hibernate所管理的实体，如果不是需要使用setResultTransform查询
 	 * @return 一组对象
 	 */
-	public Pager<Object> findBySQL(String sql,Object[] args,Class<Object> clz,boolean isEntity);
-	public Pager<Object> findBySQL(String sql,Object arg,Class<Object> clz,boolean isEntity);
-	public Pager<Object> findBySQL(String sql,Class<Object> clz,boolean isEntity);
-	public Pager<Object> findBySQL(String sql,Object[] args,Map<String, Object> alias,Class<Object> clz,boolean isEntity);
-	public Pager<Object> findByAliasSQL(String sql,Map<String, Object> alias,Class<Object> clz,boolean isEntity);
+	public <N extends Object>Pager<N> findBySQL(String sql,Object[] args,Class<?> clz,boolean isEntity);
+	public <N extends Object>Pager<N> findBySQL(String sql,Object arg,Class<?> clz,boolean isEntity);
+	public <N extends Object>Pager<N> findBySQL(String sql,Class<?> clz,boolean isEntity);
+	public <N extends Object>Pager<N> findBySQL(String sql,Object[] args,Map<String, Object> alias,Class<?> clz,boolean isEntity);
+	public <N extends Object>Pager<N> findByAliasSQL(String sql,Map<String, Object> alias,Class<?> clz,boolean isEntity);
 	
 	
 }

@@ -4,6 +4,7 @@
 package org.yandinyon.basic.dao;
 
 import java.lang.reflect.ParameterizedType;
+import java.math.BigInteger;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -51,7 +52,9 @@ public class BaseDao<T> implements IBaseDao<T> {
 	}
 	
 	protected Session getSession(){
-		return sessionFactory.openSession();
+		//被spring管理的时候不能openSession()
+		//return sessionFactory.openSession();
+		return sessionFactory.getCurrentSession();
 	}
 
 	/* (non-Javadoc)
@@ -307,7 +310,7 @@ public class BaseDao<T> implements IBaseDao<T> {
 	 * @see org.yandinyon.basic.dao.IBaseDao#listBySQL(java.lang.String, java.lang.Object[], java.lang.Class, boolean)
 	 */
 	@Override
-	public List<Object> listBySQL(String sql, Object[] args, Class<Object> clz,
+	public <N extends Object>List<N> listBySQL(String sql, Object[] args, Class<?> clz,
 			boolean isEntity) {
 		return this.listBySQL(sql, args, null, clz, isEntity);
 	}
@@ -316,7 +319,7 @@ public class BaseDao<T> implements IBaseDao<T> {
 	 * @see org.yandinyon.basic.dao.IBaseDao#listBySQL(java.lang.String, java.lang.Object, java.lang.Class, boolean)
 	 */
 	@Override
-	public List<Object> listBySQL(String sql, Object arg, Class<Object> clz,
+	public <N extends Object>List<N> listBySQL(String sql, Object arg, Class<?> clz,
 			boolean isEntity) {
 		return this.listBySQL(sql, new Object[]{arg}, clz, isEntity);
 	}
@@ -325,7 +328,7 @@ public class BaseDao<T> implements IBaseDao<T> {
 	 * @see org.yandinyon.basic.dao.IBaseDao#listBySQL(java.lang.String, java.lang.Class, boolean)
 	 */
 	@Override
-	public List<Object> listBySQL(String sql, Class<Object> clz, boolean isEntity) {
+	public <N extends Object>List<N> listBySQL(String sql, Class<?> clz, boolean isEntity) {
 		return this.listBySQL(sql, null, clz, isEntity);
 	}
 
@@ -333,8 +336,8 @@ public class BaseDao<T> implements IBaseDao<T> {
 	 * @see org.yandinyon.basic.dao.IBaseDao#listBySQL(java.lang.String, java.lang.Object[], java.util.Map, java.lang.Class, boolean)
 	 */
 	@Override
-	public List<Object> listBySQL(String sql, Object[] args,
-			Map<String, Object> alias, Class<Object> clz, boolean isEntity) {
+	public <N extends Object>List<N> listBySQL(String sql, Object[] args,
+			Map<String, Object> alias, Class<?> clz, boolean isEntity) {
 		sql = initSort(sql);
 		SQLQuery sq = getSession().createSQLQuery(sql);
 		setAliasParameter(sq, alias);
@@ -348,8 +351,8 @@ public class BaseDao<T> implements IBaseDao<T> {
 	 * @see org.yandinyon.basic.dao.IBaseDao#listBySQL(java.lang.String, java.util.Map, java.lang.Class, boolean)
 	 */
 	@Override
-	public List<Object> listByAliasSQL(String sql, Map<String, Object> alias,
-			Class<Object> clz, boolean isEntity) {
+	public <N extends Object>List<N> listByAliasSQL(String sql, Map<String, Object> alias,
+			Class<?> clz, boolean isEntity) {
 		return this.listBySQL(sql, null, alias, clz, isEntity);
 	}
 
@@ -357,7 +360,7 @@ public class BaseDao<T> implements IBaseDao<T> {
 	 * @see org.yandinyon.basic.dao.IBaseDao#findBySQL(java.lang.String, java.lang.Object[], java.lang.Class, boolean)
 	 */
 	@Override
-	public Pager<Object> findBySQL(String sql, Object[] args, Class<Object> clz,
+	public <N extends Object>Pager<N> findBySQL(String sql, Object[] args, Class<?> clz,
 			boolean isEntity) {
 		return this.findBySQL(sql, args, null, clz, isEntity);
 	}
@@ -366,7 +369,7 @@ public class BaseDao<T> implements IBaseDao<T> {
 	 * @see org.yandinyon.basic.dao.IBaseDao#findBySQL(java.lang.String, java.lang.Object, java.lang.Class, boolean)
 	 */
 	@Override
-	public Pager<Object> findBySQL(String sql, Object arg, Class<Object> clz,
+	public <N extends Object>Pager<N> findBySQL(String sql, Object arg, Class<?> clz,
 			boolean isEntity) {
 		return this.findBySQL(sql, new Object[]{arg}, clz, isEntity);
 	}
@@ -375,7 +378,7 @@ public class BaseDao<T> implements IBaseDao<T> {
 	 * @see org.yandinyon.basic.dao.IBaseDao#findBySQL(java.lang.String, java.lang.Class, boolean)
 	 */
 	@Override
-	public Pager<Object> findBySQL(String sql, Class<Object> clz, boolean isEntity) {
+	public <N extends Object>Pager<N> findBySQL(String sql, Class<?> clz, boolean isEntity) {
 		return this.findBySQL(sql, null, clz, isEntity);
 	}
 
@@ -383,27 +386,26 @@ public class BaseDao<T> implements IBaseDao<T> {
 	 * @see org.yandinyon.basic.dao.IBaseDao#findBySQL(java.lang.String, java.lang.Object[], java.util.Map, java.lang.Class, boolean)
 	 */
 	@Override
-	public Pager<Object> findBySQL(String sql, Object[] args,
-			Map<String, Object> alias, Class<Object> clz, boolean isEntity) {
-		String countSql = getCountHql(sql,false);
-		countSql = initSort(countSql);
+	public <N extends Object>Pager<N> findBySQL(String sql, Object[] args,
+			Map<String, Object> alias, Class<?> clz, boolean isEntity) {
 		sql = initSort(sql);
+		String countSql = getCountHql(sql,false);
 		SQLQuery sqlQuery = getSession().createSQLQuery(sql);
 		SQLQuery countQuery = getSession().createSQLQuery(countSql);
 		setAliasParameter(sqlQuery, alias);
 		setAliasParameter(countQuery, alias);
 		setParameter(sqlQuery, args);
 		setParameter(countQuery, args);
-		Pager<Object> pages = new Pager<Object>();
+		Pager<N> pages = new Pager<N>();
 		setPagers(sqlQuery, pages);
 		if(isEntity){
 			sqlQuery.addEntity(clz);
 		}else{
 			sqlQuery.setResultTransformer(Transformers.aliasToBean(clz));
 		}
-		List<Object> datas = sqlQuery.list();
+		List<N> datas = sqlQuery.list();
 		pages.setDatas(datas);
-		long total = (Long)countQuery.uniqueResult();
+		long total = ((BigInteger)countQuery.uniqueResult()).longValue();
 		pages.setTotal(total);
 		return pages;
 	}
@@ -412,8 +414,8 @@ public class BaseDao<T> implements IBaseDao<T> {
 	 * @see org.yandinyon.basic.dao.IBaseDao#findBySQL(java.lang.String, java.util.Map, java.lang.Class, boolean)
 	 */
 	@Override
-	public Pager<Object> findByAliasSQL(String sql, Map<String, Object> alias,
-			Class<Object> clz, boolean isEntity) {
+	public <N extends Object>Pager<N> findByAliasSQL(String sql, Map<String, Object> alias,
+			Class<?> clz, boolean isEntity) {
 		return this.findBySQL(sql, null, alias, clz, isEntity);
 	}
 
