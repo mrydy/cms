@@ -16,6 +16,15 @@ public class Role {
 	private String name;
 	private RoleType roleType;
 	
+	
+	public Role() {}
+	
+	public Role(int id, String name, RoleType roleType) {
+		this.id = id;
+		this.name = name;
+		this.roleType = roleType;
+	}
+
 	@Id
 	@GeneratedValue
 	public int getId() {

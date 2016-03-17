@@ -2,6 +2,7 @@ package com.ydy.cms.test.util;
 
 import java.util.List;
 
+import com.ydy.cms.model.Role;
 import com.ydy.cms.model.User;
 
 import junit.framework.Assert;
@@ -33,4 +34,21 @@ public class EntitiesHelper {
 	public static void assertUser(User expected) {
 		assertUser(expected, baseUser);
 	}
+	
+	public static void assertRole(Role expected,Role actual) {
+		Assert.assertNotNull(expected);
+		Assert.assertEquals(expected.getId(), actual.getId());
+		Assert.assertEquals(expected.getName(), actual.getName());
+		Assert.assertEquals(expected.getRoleType(), actual.getRoleType());
+		
+	}
+	
+	public static void assertRoles(List<Role> expected,List<Role> actuals) {
+		for(int i=0;i<expected.size();i++) {
+			Role er = expected.get(i);
+			Role ar = actuals.get(i);
+			assertRole(er, ar);
+		}
+	}
+	
 }
