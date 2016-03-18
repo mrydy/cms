@@ -14,11 +14,12 @@ public class UserRole {
 	private int id;
 	private User user;
 	private Role role;
+	
+	@Id
+	@GeneratedValue
 	public int getId() {
 		return id;
 	}
-	@Id
-	@GeneratedValue
 	public void setId(int id) {
 		this.id = id;
 	}

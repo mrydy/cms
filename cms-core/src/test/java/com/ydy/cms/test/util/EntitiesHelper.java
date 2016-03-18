@@ -2,6 +2,7 @@ package com.ydy.cms.test.util;
 
 import java.util.List;
 
+import com.ydy.cms.model.Group;
 import com.ydy.cms.model.Role;
 import com.ydy.cms.model.User;
 
@@ -48,6 +49,21 @@ public class EntitiesHelper {
 			Role er = expected.get(i);
 			Role ar = actuals.get(i);
 			assertRole(er, ar);
+		}
+	}
+	
+	public static void assertGroup(Group expected,Group actual) {
+		Assert.assertNotNull(expected);
+		Assert.assertEquals(expected.getId(), actual.getId());
+		Assert.assertEquals(expected.getName(), actual.getName());
+		
+	}
+	
+	public static void assertGroups(List<Group> expected,List<Group> actuals) {
+		for(int i=0;i<expected.size();i++) {
+			Group eg = expected.get(i);
+			Group ag = actuals.get(i);
+			assertGroup(eg, ag);
 		}
 	}
 	

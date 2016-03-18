@@ -30,6 +30,9 @@ public class AbstractDbUnitTestCase {
 	@BeforeClass
 	public static void init() throws DatabaseUnitException, SQLException {
 		dbunitCon = new DatabaseConnection(DbUtil.getConnection());
+		//DatabaseConfig config =  dbunitCon.getConfig();
+		//config.setProperty(DatabaseConfig.PROPERTY_DATATYPE_FACTORY,new MySqlDataTypeFactory());
+		//config.setProperty(DatabaseConfig.PROPERTY_METADATA_HANDLER,new MySqlMetadataHandler());
 	}
 	
 	protected IDataSet createDateSet(String tname) throws DataSetException {

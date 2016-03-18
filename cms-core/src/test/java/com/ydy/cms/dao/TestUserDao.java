@@ -50,8 +50,8 @@ public class TestUserDao extends AbstractDbUnitTestCase{
 		IDataSet ds = createDateSet("t_user");
 		DatabaseOperation.CLEAN_INSERT.execute(dbunitCon, ds);
 		List<Role> actuals = Arrays.asList(new Role(2,"文章发布人员",RoleType.ROLE_PUBLISH),new Role(3,"文章审核人员",RoleType.ROLE_AUDIT));
-		List<Role> expected = userDao.listUserRoles(2);
-		EntitiesHelper.assertRoles(expected, actuals);
+		List<Role> roles = userDao.listUserRoles(2);
+		EntitiesHelper.assertRoles(roles, actuals);
 	}
 	
 	
@@ -61,6 +61,6 @@ public class TestUserDao extends AbstractDbUnitTestCase{
 		Session s = holder.getSession();
 		s.flush();
 		TransactionSynchronizationManager.unbindResource(sessionFactory);
-		this.resumeTable();
+		//this.resumeTable();
 	}
 }

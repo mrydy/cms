@@ -39,7 +39,7 @@ public class Role {
 	public void setName(String name) {
 		this.name = name;
 	}
-	@Enumerated(EnumType.ORDINAL)
+	@Enumerated(EnumType.STRING)
 	@Column(name="role_type")
 	public RoleType getRoleType() {
 		return roleType;

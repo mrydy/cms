@@ -36,7 +36,7 @@
 		<property name="dataSource" ref="dataSource"></property>
 		<!-- 设置spring去哪个包中查找相应的实体类 -->
 		<property name="packagesToScan">
-			<value>org.ydy.cms.model</value>
+			<value>com.ydy.cms.model</value>
 		</property>
 		<property name="hibernateProperties">
 			<props>

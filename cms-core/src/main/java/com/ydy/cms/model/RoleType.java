@@ -1,5 +1,5 @@
 package com.ydy.cms.model;
 
 public enum RoleType {
-	ROLE_ADMIN,ROLE_PUBLISH,ROLE_AUDIT;
+	ROLE_ADMIN,ROLE_PUBLISH,ROLE_AUDIT
 }
