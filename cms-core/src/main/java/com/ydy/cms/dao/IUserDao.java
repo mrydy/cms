@@ -3,6 +3,7 @@ package com.ydy.cms.dao;
 import java.util.List;
 
 import org.yandinyon.basic.dao.IBaseDao;
+import org.yandinyon.basic.model.Pager;
 
 import com.ydy.cms.model.Group;
 import com.ydy.cms.model.Role;
@@ -84,6 +85,28 @@ public interface IUserDao extends IBaseDao<User> {
 	 */
 	public List<User> listGroupUsers(int groupId);
 	
+	/**
+	 * 添加用户角色对象
+	 * @param user
+	 * @param role
+	 */
+	public void addUserRole(User user,Role role);
+	
+	public void addUserGroup(User user,Group group);
+	
+	public void deleteUserRoles(int id);
+	public void deleteUserGroups(int id);
+	
+	public Pager<User> findUser();
+	
+	/**
+	 * 删除用户角色对象
+	 * @param uid
+	 * @param rid
+	 */
+	public void deleteUserRole(int uid,int rid);
+	
+	public void deleteUserGroup(int uid,int gid);
 }
 
 

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 import org.yandinyon.basic.dao.BaseDao;
+import org.yandinyon.basic.model.Pager;
 
 import com.ydy.cms.model.Group;
 import com.ydy.cms.model.Role;
@@ -43,14 +44,14 @@ public class UserDao extends BaseDao<User> implements IUserDao {
 
 	@Override
 	public UserRole loadUserRole(int userId, int roleId) {
-		String hql = "select ur from UserRole ur where ur.user.id=? and ur.role.id=?";
+		String hql = "select ur from UserRole ur left join fetch ur.user u left join fetch ur.role r where u.id=? and r.id=?";
 		return (UserRole)this.getSession().createQuery(hql)
 				.setParameter(0, userId).setParameter(1, roleId).uniqueResult();
 	}
 
 	@Override
 	public UserGroup loadUserGroup(int userId, int groupId) {
-		String hql = "select ug from UserGroup ug where ug.user.id=? and ug.group.id=?";
+		String hql = "select ug from UserGroup ug left join fetch ug.user u left join fetch ug.group g where u.id=? and g.id=?";
 		return (UserGroup)this.getSession().createQuery(hql)
 				.setParameter(0, userId).setParameter(1, groupId).uniqueResult();
 	}
@@ -77,6 +78,57 @@ public class UserDao extends BaseDao<User> implements IUserDao {
 	public List<User> listGroupUsers(int groupId) {
 		String hql = "select ug.user from UserGroup ug where ug.group.id=?";
 		return this.list(hql, groupId);
+	}
+
+	@Override
+	public void addUserRole(User user, Role role) {
+		UserRole ur = this.loadUserRole(user.getId(), role.getId());
+		if(ur!=null) return;
+		ur = new UserRole();
+		ur.setUser(user);
+		ur.setRole(role);
+		this.getSession().save(ur);
+		
+	}
+
+	@Override
+	public void addUserGroup(User user, Group group) {
+		UserGroup ug = this.loadUserGroup(user.getId(), group.getId());
+		if(ug!=null) return;
+		ug = new UserGroup();
+		ug.setGroup(group);
+		ug.setUser(user);
+		this.getSession().save(ug);
+		
+	}
+
+	@Override
+	public void deleteUserRoles(int id) {
+		String hql = "delete UserRole ur where ur.user.id=?";
+		this.updateByHql(hql, id);
+	}
+
+	@Override
+	public void deleteUserGroups(int id) {
+		String hql = "delete UserGroup ug where ug.user.id=?";
+		this.updateByHql(hql, id);
+	}
+
+	@Override
+	public Pager<User> findUser() {
+		return this.find("from User");
+	}
+
+	@Override
+	public void deleteUserRole(int uid, int rid) {
+		String hql = "delete UserRole ur where ur.user.id=? and ur.role.id=?";
+		this.updateByHql(hql, new Object[]{uid,rid});
+	}
+
+	@Override
+	public void deleteUserGroup(int uid, int gid) {
+		String hql = "delete UserGroup ug where ug.user.id=? and ug.group.id=?";
+		this.updateByHql(hql, new Object[]{uid,gid});
 	}
 
 

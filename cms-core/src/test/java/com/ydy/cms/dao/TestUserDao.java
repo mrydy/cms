@@ -1,5 +1,7 @@
 package com.ydy.cms.dao;
 
+import static org.junit.Assert.*;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -21,6 +23,8 @@ import org.springframework.orm.hibernate4.SessionHolder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
+import org.yandinyon.basic.model.Pager;
+import org.yandinyon.basic.model.SystemContext;
 
 import com.ydy.cms.model.Group;
 import com.ydy.cms.model.Role;
@@ -39,6 +43,10 @@ public class TestUserDao extends AbstractDbUnitTestCase{
 	private SessionFactory sessionFactory;
 	@Inject
 	private IUserDao userDao;
+	@Inject
+	private IRoleDao roleDao;
+	@Inject
+	private IGroupDao groupDao;
 	
 	@Before
 	public void setUp() throws SQLException, IOException, DatabaseUnitException {
@@ -131,7 +139,7 @@ public class TestUserDao extends AbstractDbUnitTestCase{
 		List<User> eus = userDao.listGroupUsers(1);
 		EntitiesHelper.assertUsers(eus, aus);
 	}
-	/*
+	
 	@Test
 	public void testAddUserGroup() throws DatabaseUnitException, SQLException {
 		Group group = groupDao.load(1);
@@ -153,7 +161,7 @@ public class TestUserDao extends AbstractDbUnitTestCase{
 		assertEquals(ur.getRole().getId(), 1);
 		assertEquals(ur.getUser().getId(), 1);
 	}
-	
+
 	@Test
 	public void testDeleteUserRoles() throws DatabaseUnitException, SQLException {
 		int uid = 2;
@@ -198,7 +206,7 @@ public class TestUserDao extends AbstractDbUnitTestCase{
 		assertEquals(pages.getTotal(), 3);
 		EntitiesHelper.assertUsers(pages.getDatas(), actuals);
 	}
-	*/
+	
 	@After
 	public void tearDown() throws FileNotFoundException, DatabaseUnitException, SQLException {
 		SessionHolder holder = (SessionHolder) TransactionSynchronizationManager.getResource(sessionFactory);

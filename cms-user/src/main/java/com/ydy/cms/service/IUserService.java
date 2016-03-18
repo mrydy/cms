@@ -2,6 +2,8 @@ package com.ydy.cms.service;
 
 import java.util.List;
 
+import org.yandinyon.basic.model.Pager;
+
 import com.ydy.cms.model.Group;
 import com.ydy.cms.model.Role;
 import com.ydy.cms.model.User;
@@ -37,7 +39,7 @@ public interface IUserService {
 	 */
 	public void updateStatus(int id);
 	
-	public void findUser();
+	public Pager<User> findUser();
 	
 	/**
 	 * 获取用户信息
