@@ -5,6 +5,13 @@
 	<artifactId>cms-parent</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
+	
+	<modules>
+		<module>../cms-core</module>
+		<module>../cms-user</module>
+		<module>../basic-hibernate</module>
+	</modules>
+	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<springframework.version>3.2.16.RELEASE</springframework.version>
@@ -15,7 +22,12 @@
 			<dependency>
 				<groupId>org.yandinyon.basic</groupId>
 				<artifactId>basic-hibernate</artifactId>
-				<version>0.0.1-SNAPSHOT</version>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>cms-core</artifactId>
+				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>junit</groupId>

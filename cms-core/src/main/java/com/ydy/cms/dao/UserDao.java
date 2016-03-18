@@ -69,7 +69,7 @@ public class UserDao extends BaseDao<User> implements IUserDao {
 
 	@Override
 	public List<User> listRoleUsers(RoleType roleType) {
-		String hql = "select ur.user from UserRole ur where ur.roleType=?";
+		String hql = "select ur.user from UserRole ur where ur.role.roleType=?";
 		return this.list(hql, roleType);
 	}
 

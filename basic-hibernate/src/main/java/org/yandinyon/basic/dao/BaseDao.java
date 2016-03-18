@@ -96,7 +96,6 @@ public class BaseDao<T> implements IBaseDao<T> {
 	/* (non-Javadoc)
 	 * @see org.yandinyon.basic.dao.IBaseDao#list(java.lang.String, java.lang.Object[])
 	 */
-	@Override
 	public List<T> list(String hql, Object[] args) {
 		return this.list(hql, args, null);
 	}
@@ -104,7 +103,6 @@ public class BaseDao<T> implements IBaseDao<T> {
 	/* (non-Javadoc)
 	 * @see org.yandinyon.basic.dao.IBaseDao#list(java.lang.String, java.lang.Object)
 	 */
-	@Override
 	public List<T> list(String hql, Object arg) {
 		return this.list(hql, new Object[]{arg});
 	}
@@ -112,7 +110,6 @@ public class BaseDao<T> implements IBaseDao<T> {
 	/* (non-Javadoc)
 	 * @see org.yandinyon.basic.dao.IBaseDao#list(java.lang.String)
 	 */
-	@Override
 	public List<T> list(String hql) {
 		return this.list(hql, null);
 	}
@@ -152,7 +149,6 @@ public class BaseDao<T> implements IBaseDao<T> {
 	/* (non-Javadoc)
 	 * @see org.yandinyon.basic.dao.IBaseDao#list(java.lang.String, java.lang.Object[], java.util.Map)
 	 */
-	@Override
 	public List<T> list(String hql, Object[] args, Map<String, Object> alias) {
 		hql = initSort(hql);             //初始化排序
 		Query query  = getSession().createQuery(hql);
@@ -164,7 +160,6 @@ public class BaseDao<T> implements IBaseDao<T> {
 	/* (non-Javadoc)
 	 * @see org.yandinyon.basic.dao.IBaseDao#list(java.lang.String, java.util.Map)
 	 */
-	@Override
 	public List<T> listByAlias(String hql, Map<String, Object> alias) {
 		return this.list(hql, null, alias);
 	}
@@ -172,7 +167,6 @@ public class BaseDao<T> implements IBaseDao<T> {
 	/* (non-Javadoc)
 	 * @see org.yandinyon.basic.dao.IBaseDao#find(java.lang.String, java.lang.Object[])
 	 */
-	@Override
 	public Pager<T> find(String hql, Object[] args) {
 		return this.find(hql, args, null);
 	}
@@ -180,7 +174,6 @@ public class BaseDao<T> implements IBaseDao<T> {
 	/* (non-Javadoc)
 	 * @see org.yandinyon.basic.dao.IBaseDao#find(java.lang.String, java.lang.Object)
 	 */
-	@Override
 	public Pager<T> find(String hql, Object arg) {
 		return this.find(hql, new Object[]{arg});
 	}
@@ -188,7 +181,6 @@ public class BaseDao<T> implements IBaseDao<T> {
 	/* (non-Javadoc)
 	 * @see org.yandinyon.basic.dao.IBaseDao#find(java.lang.String)
 	 */
-	@Override
 	public Pager<T> find(String hql) {
 		return this.find(hql, null);
 	}
@@ -213,7 +205,6 @@ public class BaseDao<T> implements IBaseDao<T> {
 	/* (non-Javadoc)
 	 * @see org.yandinyon.basic.dao.IBaseDao#find(java.lang.String, java.lang.Object[], java.util.Map)
 	 */
-	@Override
 	public Pager<T> find(String hql, Object[] args, Map<String, Object> alias) {
 		hql = initSort(hql);     //初始化排序
 		String countSql = getCountHql(hql,true);
@@ -237,20 +228,17 @@ public class BaseDao<T> implements IBaseDao<T> {
 	/* (non-Javadoc)
 	 * @see org.yandinyon.basic.dao.IBaseDao#find(java.lang.String, java.util.Map)
 	 */
-	@Override
 	public Pager<T> findByAlias(String hql, Map<String, Object> alias) {
 		return this.find(hql, null, alias);
 	}
 
 	
-	@Override
 	public Object queryObject(String hql, Object[] args,Map<String, Object> alias) {
 		Query query = getSession().createQuery(hql);
 		setAliasParameter(query, alias);
 		setParameter(query, args);
 		return query.uniqueResult();
 	}
-	@Override
 	public Object queryObjectByAlias(String hql, Map<String, Object> alias) {
 		return this.queryObject(hql, null, alias);
 	}
@@ -258,7 +246,6 @@ public class BaseDao<T> implements IBaseDao<T> {
 	/* (non-Javadoc)
 	 * @see org.yandinyon.basic.dao.IBaseDao#queryObject(java.lang.String, java.lang.Object[])
 	 */
-	@Override
 	public Object queryObject(String hql, Object[] args) {
 		return this.queryObject(hql, args, null);
 	}
@@ -266,7 +253,6 @@ public class BaseDao<T> implements IBaseDao<T> {
 	/* (non-Javadoc)
 	 * @see org.yandinyon.basic.dao.IBaseDao#queryObject(java.lang.String, java.lang.Object)
 	 */
-	@Override
 	public Object queryObject(String hql, Object arg) {
 		return this.queryObject(hql, new Object[]{arg});
 	}
@@ -274,7 +260,6 @@ public class BaseDao<T> implements IBaseDao<T> {
 	/* (non-Javadoc)
 	 * @see org.yandinyon.basic.dao.IBaseDao#queryObject(java.lang.String)
 	 */
-	@Override
 	public Object queryObject(String hql) {
 		return this.queryObject(hql, null);
 	}
@@ -282,7 +267,6 @@ public class BaseDao<T> implements IBaseDao<T> {
 	/* (non-Javadoc)
 	 * @see org.yandinyon.basic.dao.IBaseDao#updateByHql(java.lang.String, java.lang.Object[])
 	 */
-	@Override
 	public void updateByHql(String hql, Object[] args) {
 		Query query = getSession().createQuery(hql);
 		setParameter(query, args);
@@ -293,7 +277,6 @@ public class BaseDao<T> implements IBaseDao<T> {
 	/* (non-Javadoc)
 	 * @see org.yandinyon.basic.dao.IBaseDao#updateByHql(java.lang.String, java.lang.Object)
 	 */
-	@Override
 	public void updateByHql(String hql, Object arg) {
 		this.updateByHql(hql, new Object[]{arg});
 	}
@@ -301,7 +284,6 @@ public class BaseDao<T> implements IBaseDao<T> {
 	/* (non-Javadoc)
 	 * @see org.yandinyon.basic.dao.IBaseDao#updateByHql(java.lang.String)
 	 */
-	@Override
 	public void updateByHql(String hql) {
 		this.updateByHql(hql, null);
 	}
@@ -309,7 +291,6 @@ public class BaseDao<T> implements IBaseDao<T> {
 	/* (non-Javadoc)
 	 * @see org.yandinyon.basic.dao.IBaseDao#listBySQL(java.lang.String, java.lang.Object[], java.lang.Class, boolean)
 	 */
-	@Override
 	public <N extends Object>List<N> listBySQL(String sql, Object[] args, Class<?> clz,
 			boolean isEntity) {
 		return this.listBySQL(sql, args, null, clz, isEntity);
@@ -318,7 +299,6 @@ public class BaseDao<T> implements IBaseDao<T> {
 	/* (non-Javadoc)
 	 * @see org.yandinyon.basic.dao.IBaseDao#listBySQL(java.lang.String, java.lang.Object, java.lang.Class, boolean)
 	 */
-	@Override
 	public <N extends Object>List<N> listBySQL(String sql, Object arg, Class<?> clz,
 			boolean isEntity) {
 		return this.listBySQL(sql, new Object[]{arg}, clz, isEntity);
@@ -327,7 +307,6 @@ public class BaseDao<T> implements IBaseDao<T> {
 	/* (non-Javadoc)
 	 * @see org.yandinyon.basic.dao.IBaseDao#listBySQL(java.lang.String, java.lang.Class, boolean)
 	 */
-	@Override
 	public <N extends Object>List<N> listBySQL(String sql, Class<?> clz, boolean isEntity) {
 		return this.listBySQL(sql, null, clz, isEntity);
 	}
@@ -335,7 +314,6 @@ public class BaseDao<T> implements IBaseDao<T> {
 	/* (non-Javadoc)
 	 * @see org.yandinyon.basic.dao.IBaseDao#listBySQL(java.lang.String, java.lang.Object[], java.util.Map, java.lang.Class, boolean)
 	 */
-	@Override
 	public <N extends Object>List<N> listBySQL(String sql, Object[] args,
 			Map<String, Object> alias, Class<?> clz, boolean isEntity) {
 		sql = initSort(sql);
@@ -350,7 +328,6 @@ public class BaseDao<T> implements IBaseDao<T> {
 	/* (non-Javadoc)
 	 * @see org.yandinyon.basic.dao.IBaseDao#listBySQL(java.lang.String, java.util.Map, java.lang.Class, boolean)
 	 */
-	@Override
 	public <N extends Object>List<N> listByAliasSQL(String sql, Map<String, Object> alias,
 			Class<?> clz, boolean isEntity) {
 		return this.listBySQL(sql, null, alias, clz, isEntity);
@@ -359,7 +336,6 @@ public class BaseDao<T> implements IBaseDao<T> {
 	/* (non-Javadoc)
 	 * @see org.yandinyon.basic.dao.IBaseDao#findBySQL(java.lang.String, java.lang.Object[], java.lang.Class, boolean)
 	 */
-	@Override
 	public <N extends Object>Pager<N> findBySQL(String sql, Object[] args, Class<?> clz,
 			boolean isEntity) {
 		return this.findBySQL(sql, args, null, clz, isEntity);
@@ -368,7 +344,6 @@ public class BaseDao<T> implements IBaseDao<T> {
 	/* (non-Javadoc)
 	 * @see org.yandinyon.basic.dao.IBaseDao#findBySQL(java.lang.String, java.lang.Object, java.lang.Class, boolean)
 	 */
-	@Override
 	public <N extends Object>Pager<N> findBySQL(String sql, Object arg, Class<?> clz,
 			boolean isEntity) {
 		return this.findBySQL(sql, new Object[]{arg}, clz, isEntity);
@@ -377,7 +352,6 @@ public class BaseDao<T> implements IBaseDao<T> {
 	/* (non-Javadoc)
 	 * @see org.yandinyon.basic.dao.IBaseDao#findBySQL(java.lang.String, java.lang.Class, boolean)
 	 */
-	@Override
 	public <N extends Object>Pager<N> findBySQL(String sql, Class<?> clz, boolean isEntity) {
 		return this.findBySQL(sql, null, clz, isEntity);
 	}
@@ -385,7 +359,6 @@ public class BaseDao<T> implements IBaseDao<T> {
 	/* (non-Javadoc)
 	 * @see org.yandinyon.basic.dao.IBaseDao#findBySQL(java.lang.String, java.lang.Object[], java.util.Map, java.lang.Class, boolean)
 	 */
-	@Override
 	public <N extends Object>Pager<N> findBySQL(String sql, Object[] args,
 			Map<String, Object> alias, Class<?> clz, boolean isEntity) {
 		sql = initSort(sql);
@@ -413,7 +386,6 @@ public class BaseDao<T> implements IBaseDao<T> {
 	/* (non-Javadoc)
 	 * @see org.yandinyon.basic.dao.IBaseDao#findBySQL(java.lang.String, java.util.Map, java.lang.Class, boolean)
 	 */
-	@Override
 	public <N extends Object>Pager<N> findByAliasSQL(String sql, Map<String, Object> alias,
 			Class<?> clz, boolean isEntity) {
 		return this.findBySQL(sql, null, alias, clz, isEntity);

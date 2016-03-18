@@ -12,6 +12,10 @@ import junit.framework.Assert;
 public class EntitiesHelper {
 	private static User baseUser = new User(1,"admin1","123","admin1","admin1@admin.com","110",1);
 	
+	public static User getBaseUser(){
+		return baseUser;
+	}
+	
 	public static void assertUser(User expected,User actual) {
 		Assert.assertNotNull(expected);
 		Assert.assertEquals(expected.getId(), actual.getId());
@@ -22,6 +26,14 @@ public class EntitiesHelper {
 		Assert.assertEquals(expected.getPhone(), actual.getPhone());
 		Assert.assertEquals(expected.getStatus(), actual.getStatus());
 		
+	}
+	
+	public static void assertObjects(List<?> expected,List<?> actuals) {
+		for(int i=0;i<expected.size();i++) {
+			Object eo = expected.get(i);
+			Object ao = actuals.get(i);
+			Assert.assertEquals(eo, ao);
+		}
 	}
 	
 	public static void assertUsers(List<User> expected,List<User> actuals) {

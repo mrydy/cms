@@ -13,6 +13,11 @@ public class Group {
 	private String name;
 	private String description;
 	
+	public Group(){}
+	public Group(int id, String name) {
+		this.id = id;
+		this.name = name;
+	}
 	@Id
 	@GeneratedValue
 	public int getId() {
