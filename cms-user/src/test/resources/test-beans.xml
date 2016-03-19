@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
+	
+	<!-- 打开spring的Annotation支持 -->
+	<context:annotation-config></context:annotation-config>
+	
+	<bean id="userDao" class="org.easymock.EasyMock" factory-method="createStrictMock">
+		<constructor-arg value="com.ydy.cms.dao.IUserDao"></constructor-arg>
+	</bean>
+	<bean id="roleDao" class="org.easymock.EasyMock" factory-method="createStrictMock">
+		<constructor-arg value="com.ydy.cms.dao.IRoleDao"></constructor-arg>
+	</bean>
+	<bean id="groupDao" class="org.easymock.EasyMock" factory-method="createStrictMock">
+		<constructor-arg value="com.ydy.cms.dao.IGroupDao"></constructor-arg>
+	</bean>
+	
+	<bean id="userService" class="com.ydy.cms.service.UserService">
+		<property name="userDao" ref="userDao"></property>
+		<property name="roleDao" ref="roleDao"></property>
+		<property name="groupDao" ref="groupDao"></property>
+	</bean>
+</beans>
