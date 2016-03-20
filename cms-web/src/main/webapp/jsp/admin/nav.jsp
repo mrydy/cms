@@ -10,6 +10,7 @@
 <script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/core/jquery.cms.core.js"></script>
 <script type="text/javascript">
+
 $(function(){
 	$("#left").myaccordion();
 });
