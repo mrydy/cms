@@ -22,7 +22,7 @@ $(function(){
 	<h3 class="admin_link_bar">
 		<jsp:include page="inc.jsp"></jsp:include>
 	</h3>
-	<sf:form method="post" modelAttribute="userDto" id="addForm">
+	<sf:form method="post" modelAttribute="user" id="addForm">
 	<table width="800" cellspacing="0" cellPadding="0">
 		<thead><tr><td colspan="2">添加用户功能</td></tr></thead>
 		<tr>
@@ -59,7 +59,9 @@ $(function(){
 				<%-- <c:forEach var="role" items="${roles }">
 					${role.descr }<input type="checkbox" name="roleIds" value="${role.id }"/>
 				</c:forEach> --%>
+				<%--  
 				<sf:checkboxes  items="${roles}" itemLabel="name" itemValue="id" path="roleIds"/>
+				--%>
 			</td>
 		</tr>
 		<tr>
@@ -68,7 +70,9 @@ $(function(){
 				<%-- <c:forEach var="role" items="${roles }">
 					${role.descr }<input type="checkbox" name="roleIds" value="${role.id }"/>
 				</c:forEach> --%>
+				<%--  
 				<sf:checkboxes items="${groups }" path="groupIds" itemLabel="name" itemValue="id"/>
+				--%>
 			</td>
 		</tr>
 		<tr>
