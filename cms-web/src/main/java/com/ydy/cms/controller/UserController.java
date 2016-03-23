@@ -1,13 +1,15 @@
 package com.ydy.cms.controller;
 
 import javax.inject.Inject;
+import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.ydy.cms.model.User;
+import com.ydy.cms.dto.UserDto;
 import com.ydy.cms.service.IGroupService;
 import com.ydy.cms.service.IRoleService;
 import com.ydy.cms.service.IUserService;
@@ -48,11 +50,35 @@ public class UserController {
 		return "user/list";
 	}
 	
-	@RequestMapping(value="/add",method=RequestMethod.GET)
-	public String add(Model model){
-		model.addAttribute("user", new User());
+	private void initAddUser(Model model){
 		model.addAttribute("groups", groupService.listGroup());
 		model.addAttribute("roles", roleService.listRole());
+	}
+	
+	@RequestMapping(value="/add",method=RequestMethod.GET)
+	public String add(Model model){
+		model.addAttribute("user", new UserDto());
+		initAddUser(model);
 		return "user/add";
 	}
+	
+	@RequestMapping(value="/add",method=RequestMethod.POST)
+	public String add(@Valid UserDto userDto,BindingResult br,Model model){
+		if(br.hasErrors()){
+			initAddUser(model);
+			return "user/add";
+		}
+		userService.add(userDto.getUser(), userDto.getRoleIds(), userDto.getGroupIds());
+		return "redirect:/admin/user/users";
+	}
+	
+	
+	
 }
+
+
+
+
+
+
+

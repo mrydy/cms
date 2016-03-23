@@ -59,9 +59,7 @@ $(function(){
 				<%-- <c:forEach var="role" items="${roles }">
 					${role.descr }<input type="checkbox" name="roleIds" value="${role.id }"/>
 				</c:forEach> --%>
-				<%--  
 				<sf:checkboxes  items="${roles}" itemLabel="name" itemValue="id" path="roleIds"/>
-				--%>
 			</td>
 		</tr>
 		<tr>
@@ -70,9 +68,7 @@ $(function(){
 				<%-- <c:forEach var="role" items="${roles }">
 					${role.descr }<input type="checkbox" name="roleIds" value="${role.id }"/>
 				</c:forEach> --%>
-				<%--  
 				<sf:checkboxes items="${groups }" path="groupIds" itemLabel="name" itemValue="id"/>
-				--%>
 			</td>
 		</tr>
 		<tr>
