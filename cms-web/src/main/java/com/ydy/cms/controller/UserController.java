@@ -8,19 +8,36 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ydy.cms.model.User;
+import com.ydy.cms.service.IGroupService;
+import com.ydy.cms.service.IRoleService;
 import com.ydy.cms.service.IUserService;
 
 @Controller
 @RequestMapping("/admin/user")
 public class UserController {
 
-	@Inject
 	private IUserService userService;
-
+	public IGroupService groupService;
+	public IRoleService roleService;
+	
+	public IGroupService getGroupService() {
+		return groupService;
+	}
+	@Inject
+	public void setGroupService(IGroupService groupService) {
+		this.groupService = groupService;
+	}
+	public IRoleService getRoleService() {
+		return roleService;
+	}
+	@Inject
+	public void setRoleService(IRoleService roleService) {
+		this.roleService = roleService;
+	}
 	public IUserService getUserService() {
 		return userService;
 	}
-
+	@Inject
 	public void setUserService(IUserService userService) {
 		this.userService = userService;
 	}
@@ -34,6 +51,8 @@ public class UserController {
 	@RequestMapping(value="/add",method=RequestMethod.GET)
 	public String add(Model model){
 		model.addAttribute("user", new User());
+		model.addAttribute("groups", groupService.listGroup());
+		model.addAttribute("roles", roleService.listRole());
 		return "user/add";
 	}
 }
