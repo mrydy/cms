@@ -1,6 +1,7 @@
 package com.ydy.cms.model;
 
-import java.sql.Date;
+
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -92,8 +93,8 @@ public class User {
 	public Date getCreateDate() {
 		return createDate;
 	}
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
+	public void setCreateDate(java.util.Date date) {
+		this.createDate = date;
 	}
 	
 	

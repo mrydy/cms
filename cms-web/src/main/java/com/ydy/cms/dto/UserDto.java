@@ -1,8 +1,9 @@
 package com.ydy.cms.dto;
 
-import javax.validation.constraints.NotNull;
+import java.util.List;
 
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import com.ydy.cms.model.User;
 
@@ -24,14 +25,14 @@ public class UserDto {
 	public void setId(int id) {
 		this.id = id;
 	}
-	@NotNull(message="登录名不能为空")
+	@NotEmpty(message="登录名不能为空")
 	public String getUsername() {
 		return username;
 	}
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	@NotNull(message="密码不能为空")
+	@NotEmpty(message="密码不能为空")
 	public String getPassword() {
 		return password;
 	}
@@ -112,6 +113,26 @@ public class UserDto {
 	
 	public UserDto(){
 		
+	}
+	
+	public UserDto(User user,List<Integer> roleIdList,List<Integer> groupIdList){
+		this.setEmail(user.getEmail());
+		this.setId(user.getId());
+		this.setNickname(user.getNickname());
+		this.setPassword(user.getPassword());
+		this.setPhone(user.getPhone());
+		this.setStatus(user.getStatus());
+		this.setUsername(user.getUsername());
+		this.setGroupIds(list2Array(groupIdList));
+		this.setRoleIds(list2Array(roleIdList));
+	}
+	
+	private Integer[] list2Array(List<Integer> datas){
+		Integer[] nums = new Integer[datas.size()];
+		for(int i=0;i<datas.size();i++){
+			nums[i] = datas.get((int)i);
+		}
+		return nums;
 	}
 	
 }

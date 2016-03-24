@@ -62,7 +62,8 @@ public interface IUserService {
 	 */
 	public List<Group> listUserGroups(int id);
 
-	
+	public List<Integer> listUserRoleIds(int id);
+	public List<Integer> listUserGroupIds(int id);
 	
 	
 }

@@ -1,5 +1,6 @@
 package com.ydy.cms.service;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -64,6 +65,7 @@ public class UserService implements IUserService {
 	public void add(User user, Integer[] rids, Integer[] gids) {
 		User tu = userDao.loadByUsername(user.getUsername());
 		if(tu!=null) throw new CMSException("添加的用户对象已经存在，不能添加");
+		user.setCreateDate(new Date());
 		userDao.add(user);
 		//添加角色对象
 		for(Integer rid :rids){
@@ -148,6 +150,16 @@ public class UserService implements IUserService {
 	@Override
 	public List<Group> listUserGroups(int id) {
 		return userDao.listUserGroups(id);
+	}
+
+	@Override
+	public List<Integer> listUserRoleIds(int id) {
+		return userDao.listUserRoleIds(id);
+	}
+
+	@Override
+	public List<Integer> listUserGroupIds(int id) {
+		return userDao.listUserGroupIds(id);
 	}
 
 }
