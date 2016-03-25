@@ -93,7 +93,7 @@ public class User {
 	public Date getCreateDate() {
 		return createDate;
 	}
-	public void setCreateDate(java.util.Date date) {
+	public void setCreateDate(Date date) {
 		this.createDate = date;
 	}
 	

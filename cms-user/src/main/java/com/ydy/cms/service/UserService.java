@@ -162,4 +162,14 @@ public class UserService implements IUserService {
 		return userDao.listUserGroupIds(id);
 	}
 
+	@Override
+	public List<User> listGroupUsers(int gid) {
+		return userDao.listGroupUsers(gid);
+	}
+
+	@Override
+	public List<User> listRoleUsers(int rid) {
+		return userDao.listRoleUsers(rid);
+	}
+
 }

@@ -65,5 +65,7 @@ public interface IUserService {
 	public List<Integer> listUserRoleIds(int id);
 	public List<Integer> listUserGroupIds(int id);
 	
+	public List<User> listGroupUsers(int gid);
+	public List<User> listRoleUsers(int rid);
 	
 }
