@@ -16,19 +16,22 @@
 	<h3 class="admin_link_bar">
 		<jsp:include page="inc.jsp"></jsp:include>
 	</h3>
-	<sf:form method="post" modelAttribute="group" id="addForm">
+	<sf:form method="post" modelAttribute="role" id="addForm">
 	<table width="800" cellspacing="0" cellPadding="0">
-		<thead><tr><td colspan="2">更新用户组功能</td></tr></thead>
+		<thead><tr><td colspan="2">修改角色功能</td></tr></thead>
 		<sf:hidden path="id"/>
 		<tr>
-			<td class="rightTd" width="200px">组名称:</td>
+			<td class="rightTd" width="200px">角色名称:</td>
 			<td class="leftTd"><sf:input path="name" size="30"/></td>
 		</tr>
 		<tr>
-			<td class="rightTd">组描述:</td><td class="leftTd"><sf:textarea path="description" cols="60" rows="4"/></td>
+			<!--  
+			<td class="rightTd">角色类型:</td><td class="leftTd"><sf:radiobuttons path="roleType" items="${types}"/></td>
+			-->
+			<td class="rightTd">角色类型:</td><td class="leftTd"><sf:select path="roleType"><sf:options items="${types}"/></sf:select></td>
 		</tr>
 		<tr>
-			<td colspan="2" class="centerTd"><input type="submit" value="更新用户组"/><input type="reset"/></td>
+			<td colspan="2" class="centerTd"><input type="submit" value="修改角色"/><input type="reset"/></td>
 		</tr>
 	</table>
 	</sf:form>

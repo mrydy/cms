@@ -18,39 +18,27 @@
 	<table width="800" cellspacing="0" cellPadding="0" id="listTable">
 		<thead>
 		<tr>
-			<td>组标识</td>
-			<td>组名称</td>
-			<td>组描述</td>
-			<td>组操作</td>
+			<td>角色标识</td>
+			<td>角色称</td>
+			<td>角色类型</td>
+			<td>角色操作</td>
 		</tr>
 		</thead>
 		<tbody>
-		<c:forEach items="${datas.datas }" var="group">
+		<c:forEach items="${roles }" var="role">
 			<tr>
-				<td>${group.id }&nbsp;</td>
-				<td><a href="${group.id }" class="list_link">${group.name }</a></td>
-				<td>${group.description }&nbsp;</td>
+				<td>${role.id }&nbsp;</td>
+				<td><a href="${role.id }" class="list_link">${role.name }</a></td>
+				<td>${role.roleType }&nbsp;</td>
 				<td>
-					<a href="delete/${group.id }"  class="list_op delete">删除</a>
-					<a href="update/${group.id }" class="list_op">更新</a>
-					<a href="cleanUsers/${group.id }"  class="list_op delete">清空用户</a>
-					<a href="<%=request.getContextPath() %>/admin/channel/userchannels/${group.id }" class="list_op">查询管理栏目</a>
-					<a href="<%=request.getContextPath() %>/admin/channel/userchannels/${group.id }" class="list_op">设置管理栏目</a>
+					<a href="delete/${role.id }"  class="list_op delete">删除</a>
+					<a href="update/${role.id }" class="list_op">更新</a>
+					<a href="cleanUsers/${role.id }"  class="list_op delete">清空用户</a>
 				&nbsp;
 				</td>
 			</tr>
 		</c:forEach>
 		</tbody>
-		<tfoot>
-		<tr>
-			<td colspan="6" style="text-align:right;margin-right:10px;">
-			<jsp:include page="/jsp/pager.jsp">
-				<jsp:param value="${datas.total }" name="totalRecord"/>
-				<jsp:param value="groups" name="url"/>
-			</jsp:include>
-			</td>
-		</tr>
-		</tfoot>
 	</table>
 </div>
 </body>
