@@ -1,8 +1,10 @@
 package com.ydy.cms.dao;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Arrays;
@@ -208,11 +210,11 @@ public class TestUserDao extends AbstractDbUnitTestCase{
 	}
 	
 	@After
-	public void tearDown() throws FileNotFoundException, DatabaseUnitException, SQLException {
+	public void tearDown() throws Exception {
 		SessionHolder holder = (SessionHolder) TransactionSynchronizationManager.getResource(sessionFactory);
 		Session s = holder.getSession(); 
 		s.flush();
 		TransactionSynchronizationManager.unbindResource(sessionFactory);
-		//this.resumeTable();
+		this.resumeTable();
 	}
 }
