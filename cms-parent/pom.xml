@@ -9,6 +9,7 @@
 	<modules>
 		<module>../cms-core</module>
 		<module>../cms-user</module>
+		<module>../cms-topic</module>
 		<module>../basic-hibernate</module>
 	</modules>
 
@@ -130,6 +131,11 @@
 			<dependency>
 				<groupId>${project.groupId}</groupId>
 				<artifactId>cms-user</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>cms-topic</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			
