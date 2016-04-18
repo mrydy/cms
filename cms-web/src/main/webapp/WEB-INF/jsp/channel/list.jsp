@@ -33,11 +33,14 @@
 				},
 				callback:{
 					onClick:function(event,treeId,treeNode){
+						//alert(treeId);
 						//alert(treeNode.name+","+treeNode.isParent+","+treeNode.test);
 					}
 				}
 		};
+		var node = {id:"7",name:"系统管理2333",pid:"4",test:"bbbbb"};
 		var tree = $.fn.zTree.init($("#tree"), setting, datas);
+		tree.addNodes(tree.getNodeByParam("id",4,null),node);
 	});
 </script>
 </head>
