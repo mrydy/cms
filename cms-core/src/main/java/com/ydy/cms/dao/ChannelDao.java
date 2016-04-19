@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import org.yandinyon.basic.dao.BaseDao;
 
 import com.ydy.cms.model.Channel;
+import com.ydy.cms.model.ChannelTree;
 
 @Repository("channelDao")
 public class ChannelDao extends BaseDao<Channel> implements IChannelDao {
@@ -25,6 +26,28 @@ public class ChannelDao extends BaseDao<Channel> implements IChannelDao {
 		Object obj = this.queryObject(hql);
 		if(obj==null) return 0;
 		return (Integer)obj;
+	}
+
+	@Override
+	public List<ChannelTree> generateTree() {
+		String sql = "select id,name,pid from t_channel";
+		List<ChannelTree> cts = this.listBySQL(sql, ChannelTree.class, false);
+		cts.add(new ChannelTree(0,"系统栏目管理",-1));
+		for(ChannelTree ct:cts){
+			if(ct.getPid()==null){
+				ct.setPid(0);
+			}
+		}
+		return cts;
+	}
+
+	@Override
+	public List<ChannelTree> generateTreeByParent(Integer pid) {
+		if(pid==null||pid==0){
+			return this.listBySQL("select id,name,pid from t_channel where pid is null", ChannelTree.class, false);
+		}else{
+			return this.listBySQL("select id,name,pid from t_channel where pid="+pid, ChannelTree.class, false);
+		}
 	}
 
 }
