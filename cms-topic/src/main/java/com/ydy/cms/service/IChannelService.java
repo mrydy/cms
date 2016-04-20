@@ -3,6 +3,7 @@ package com.ydy.cms.service;
 import java.util.List;
 
 import com.ydy.cms.model.Channel;
+import com.ydy.cms.model.ChannelTree;
 
 public interface IChannelService {
 
@@ -14,4 +15,8 @@ public interface IChannelService {
 	
 	public Channel load(int id);
 	public List<Channel> listByParentId(Integer pid);
+	
+	
+	public List<ChannelTree> generateTree();
+	public List<ChannelTree> generateTreeByParent(Integer pid);
 }

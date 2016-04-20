@@ -35,5 +35,11 @@ public class ChannelTree {
 	public void setPid(Integer pid) {
 		this.pid = pid;
 	}
+	@Override
+	public String toString() {
+		return "ChannelTree [id=" + id + ", name=" + name + ", pid=" + pid
+				+ "]";
+	}
+	
 	
 }

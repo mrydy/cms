@@ -10,6 +10,13 @@
 <script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/tree/jquery.ztree.core.min.js"></script>
 <script type="text/javascript">
+	var datas = [{id:"0",name:"根目录",pid:"-1",test:"ab"},
+	             {id:"1",name:"用户管理",pid:"0",test:"a1"},
+	             {id:"2",name:"用户管理1",pid:"1",test:"a11"},
+	             {id:"3",name:"用户管理2",pid:"1",test:"a12"},
+	             {id:"4",name:"系统管理",pid:"0",test:"b1"},
+	             {id:"5",name:"系统管理1",pid:"4",test:"b11"},
+	             {id:"6",name:"系统管理2",pid:"4",test:"b12"}];
 	$(function(){
 		var setting = {
 				data: {
@@ -24,29 +31,22 @@
 					dblClickExpand: false,
 					selectedMulti: false
 				},
-				async:{
-					enable:true,
-					url:"treeAll"
+				callback:{
+					onClick:function(event,treeId,treeNode){
+						//alert(treeId);
+						//alert(treeNode.name+","+treeNode.isParent+","+treeNode.test);
+					}
 				}
 		};
-		
-		var tree = $.fn.zTree.init($("#tree"), setting);
+		var node = {id:"7",name:"系统管理2333",pid:"4",test:"bbbbb"};
+		var tree = $.fn.zTree.init($("#tree"), setting, datas);
+		tree.addNodes(tree.getNodeByParam("id",4,null),node);
 	});
 </script>
 </head>
 <body>
 <div id="content">
-	<h3 class="admin_link_bar">
-		<span>正在使用栏目管理功能</span>
-	</h3>
-	<table border=0 align=left height="600px">
-		<tr>
-			<td width=150px align=left valign=top style="BORDER-RIGHT: #999999 1px dashed">
-				<ul id="tree" class="ztree" style="width:150px; overflow:auto;"></ul>
-			</td>
-			<td width=650px align=left valign=top><iframe ID="cc" Name="testIframe" FRAMEBORDER=0 SCROLLING=AUTO width=100%  height=600px ></iframe></td>
-		</tr>
-	</table>
+<div id="tree" class="ztree"></div>
 </div>
 </body>
 </html>

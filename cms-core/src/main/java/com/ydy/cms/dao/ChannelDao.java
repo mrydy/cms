@@ -30,7 +30,7 @@ public class ChannelDao extends BaseDao<Channel> implements IChannelDao {
 
 	@Override
 	public List<ChannelTree> generateTree() {
-		String sql = "select id,name,pid from t_channel";
+		String sql = "select id,name,pid from t_channel order by orders";
 		List<ChannelTree> cts = this.listBySQL(sql, ChannelTree.class, false);
 		cts.add(new ChannelTree(0,"系统栏目管理",-1));
 		for(ChannelTree ct:cts){
@@ -44,9 +44,9 @@ public class ChannelDao extends BaseDao<Channel> implements IChannelDao {
 	@Override
 	public List<ChannelTree> generateTreeByParent(Integer pid) {
 		if(pid==null||pid==0){
-			return this.listBySQL("select id,name,pid from t_channel where pid is null", ChannelTree.class, false);
+			return this.listBySQL("select id,name,pid from t_channel where pid is null order by orders", ChannelTree.class, false);
 		}else{
-			return this.listBySQL("select id,name,pid from t_channel where pid="+pid, ChannelTree.class, false);
+			return this.listBySQL("select id,name,pid from t_channel where pid="+pid+" order by orders", ChannelTree.class, false);
 		}
 	}
 

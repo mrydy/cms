@@ -38,7 +38,7 @@ $(function(){
 		<span class="navTilteTxt">文章管理</span>
 	</h3>
 	<li class="navChild">
-		<a href="<%=request.getContextPath() %>/admin/channel/cm" target="content">栏目信息管理</a>
+		<a href="<%=request.getContextPath() %>/admin/channel/channels" target="content">栏目信息管理</a>
 	</li>
 	<li class="navChild">
 		<a href="<%=request.getContextPath() %>/admin/article/publishs" target="content">文章信息管理</a>

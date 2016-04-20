@@ -1,5 +1,7 @@
 package com.ydy.cms.dao;
 
+import static org.junit.Assert.*;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -55,6 +57,19 @@ public class TestChannelDao extends AbstractDbUnitTestCase{
 		Assert.assertEquals(max, new Integer(4));
 		max = channelDao.getMaxOrderByParent(2);
 		Assert.assertEquals(max, new Integer(0));
+		fail("没有完成测试");
+	}
+	
+	@Test
+	public void testGenerateTree(){
+		System.out.println(channelDao.generateTree());
+		fail("没有完成测试");
+	}
+	
+	@Test
+	public void testGenerateTreeByParent(){
+		System.out.println(channelDao.generateTreeByParent(null));
+		fail("没有完成测试");
 	}
 	
 	
@@ -64,6 +79,6 @@ public class TestChannelDao extends AbstractDbUnitTestCase{
 		Session s = holder.getSession(); 
 		s.flush();
 		TransactionSynchronizationManager.unbindResource(sessionFactory);
-		this.resumeTable();
+		//this.resumeTable();
 	}
 }

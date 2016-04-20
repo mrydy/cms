@@ -10,6 +10,7 @@ import org.yandinyon.basic.model.SystemContext;
 import com.ydy.cms.dao.IChannelDao;
 import com.ydy.cms.model.CMSException;
 import com.ydy.cms.model.Channel;
+import com.ydy.cms.model.ChannelTree;
 
 @Service("channelService")
 public class ChannelService implements IChannelService {
@@ -73,6 +74,14 @@ public class ChannelService implements IChannelService {
 			SystemContext.setOrder("asc");
 		}
 		return channelDao.listByParent(pid);
+	}
+	@Override
+	public List<ChannelTree> generateTree() {
+		return channelDao.generateTree();
+	}
+	@Override
+	public List<ChannelTree> generateTreeByParent(Integer pid) {
+		return channelDao.generateTreeByParent(pid);
 	}
 
 }

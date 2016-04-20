@@ -68,11 +68,10 @@
 			<artifactId>aspectjweaver</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>commons-beanutils</groupId>
-			<artifactId>commons-beanutils</artifactId>
+			<groupId>org.yandinyon.basic</groupId>
+			<artifactId>basic-common</artifactId>
 		</dependency>
-				
-		
+
 	</dependencies>
 	<build>
 		<plugins>
