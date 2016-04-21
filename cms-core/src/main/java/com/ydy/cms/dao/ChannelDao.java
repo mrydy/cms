@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 import org.yandinyon.basic.dao.BaseDao;
+import org.yandinyon.basic.model.SystemContext;
 
 import com.ydy.cms.model.Channel;
 import com.ydy.cms.model.ChannelTree;
@@ -14,8 +15,9 @@ public class ChannelDao extends BaseDao<Channel> implements IChannelDao {
 
 	@Override
 	public List<Channel> listByParent(Integer pid) {
-		String hql = "select c from Channel c left join fetch c.parent cp where cp.id="+pid+" order by c.orders";
-		if(pid==null||pid==0) hql = "select c from Channel c where c.parent is null order by c.orders";
+		String hql = "select c from Channel c left join fetch c.parent cp where cp.id="+pid;
+		if(pid==null||pid==0) hql = "select c from Channel c where c.parent is null";
+		SystemContext.setSort("c.orders");
 		return this.list(hql);
 	}
 

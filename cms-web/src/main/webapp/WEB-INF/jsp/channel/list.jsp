@@ -27,9 +27,15 @@
 				async:{
 					enable:true,
 					url:"treeAll"
+				},
+				callback:{
+					onClick:listChild
 				}
 		};
-		
+		function listChild(event,treeId,treeNode){
+			//alert(treeNode.id);
+			$("#cc").attr("src","channels/"+treeNode.id);
+		}
 		var tree = $.fn.zTree.init($("#tree"), setting);
 	});
 </script>

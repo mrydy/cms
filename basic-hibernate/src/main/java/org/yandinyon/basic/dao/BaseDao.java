@@ -115,12 +115,12 @@ public class BaseDao<T> implements IBaseDao<T> {
 	}
 
 	private String initSort(String hql){
-		String sort = SystemContext.getSort();
 		String order = SystemContext.getOrder();
-		if(sort!=null&&!"".equals(sort)){
+		String sort = SystemContext.getSort();
+		if(sort!=null&&!"".equals(sort.trim())){
 			hql += " order by " +sort;
-			if(!"desc".equals(order)) hql += " asc";
-			else hql += " desc";
+			if(!"desc".equals(order)) hql+=" asc";
+			else hql+=" desc";
 		}
 		return hql;
 	}

@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -36,6 +37,12 @@ public class ChannelController {
 	@RequestMapping(value="/treeAll")
 	public @ResponseBody List<ChannelTree> list(){
 		return channelService.generateTree();
+	}
+	
+	@RequestMapping(value="/channels/{pid}")
+	public String listChild(@PathVariable Integer pid,Model model){
+		model.addAttribute("channels", channelService.listByParentId(pid));
+		return "channel/list_child";
 	}
 
 }
